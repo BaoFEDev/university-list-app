@@ -43,19 +43,19 @@ const Search = props => {
         setSearchResult(value.name);
     };
 
-    // useEffect(() => {
-    //     // Fetch items from another resources.
-    //     const endOffset = itemOffset + itemsPerPage;
-    //     setCurrentItems(universityList.slice(itemOffset, endOffset));
-    //     setPageCount(Math.ceil(universityList.length / itemsPerPage));
-    // }, [itemOffset, itemsPerPage]);
+    useEffect(() => {
+        // Fetch items from another resources.
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(universityList.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(universityList.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage]);
 
 
 
-    // const handlePageClick = (event) => {
-    //     const newOffset = (event.selected * itemsPerPage) % universityList.length;
-    //     setItemOffset(newOffset);
-    // };
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % universityList.length;
+        setItemOffset(newOffset);
+    };
     return (
         <>
             <section id="search" className="pt-5">
@@ -69,7 +69,7 @@ const Search = props => {
                             loading && (<Loading />)
                         }
                         <ul className="university-list">
-                            {universityList.map((item, idx) => (
+                            {currentItems.map((item, idx) => (
                                 <UniversityItem
                                     key={idx}
                                     name={item.name}
@@ -79,7 +79,7 @@ const Search = props => {
                             ))}
                         </ul>
                     </div>
-                    {/* <ReactPaginate
+                    <ReactPaginate
                         breakLabel="..."
                         nextLabel="next >"
                         breakLabel={'...'}
@@ -98,7 +98,7 @@ const Search = props => {
                         breakLinkClassName={'page-link'}
                         activeClassName={'active'}
                         onPageChange={handlePageClick}
-                    /> */}
+                    />
                 </div>
             </section>
         </>
