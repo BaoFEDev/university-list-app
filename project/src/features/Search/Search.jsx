@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import universityApi from '../../api/universityApi';
 import Loading from '../../components/Loading/Loading';
 import SearchForm from './components/SearchForm';
 import UniversityItem from './components/UniversityItem';
-import ReactPaginate from 'react-paginate';
 import './Search.scss';
-const Search = props => {
+const Search = () => {
     const [universityList, setUniversityList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchResult, setSearchResult] = useState('');
-    // We start with an empty list of items.
-    const [currentItems, setCurrentItems] = useState([]);
-    const [pageCount, setPageCount] = useState(0);
-    // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
-    const [itemOffset, setItemOffset] = useState(0);
+
     const [filterList, setFilterList] = useState({
         name: ''
     });
@@ -25,6 +20,7 @@ const Search = props => {
             try {
                 setLoading(true);
                 const list = await universityApi.getAll(filterList.name);
+
                 setUniversityList(list.map(x => ({
                     name: x.name,
                     country: x.country,
@@ -43,19 +39,24 @@ const Search = props => {
         setSearchResult(value.name);
     };
 
-    useEffect(() => {
-        // Fetch items from another resources.
-        const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(universityList.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(universityList.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [postsPerPage] = useState(10);
 
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = (indexOfLastPost - postsPerPage) <= 0 ? 0 : (indexOfLastPost - postsPerPage);
+    const currentPosts = universityList.slice(indexOfFirstPost, indexOfLastPost);
 
-
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % universityList.length;
-        setItemOffset(newOffset);
+    // Change page
+    const handlePageClick = e => {
+        setCurrentPage(e.selected);
     };
+
+    const pageNumbers = [];
+
+    for (let i = 0; i <= Math.ceil(universityList.length / postsPerPage); i++) {
+        pageNumbers.push(i);
+    }
     return (
         <>
             <section id="search" className="pt-5">
@@ -69,7 +70,7 @@ const Search = props => {
                             loading && (<Loading />)
                         }
                         <ul className="university-list">
-                            {currentItems.map((item, idx) => (
+                            {currentPosts.map((item, idx) => (
                                 <UniversityItem
                                     key={idx}
                                     name={item.name}
@@ -83,7 +84,7 @@ const Search = props => {
                         breakLabel="..."
                         nextLabel="next >"
                         breakLabel={'...'}
-                        pageCount={pageCount}
+                        pageCount={pageNumbers.length}
                         marginPagesDisplayed={3}
                         pageRangeDisplayed={6}
                         previousLabel="< previous"
@@ -105,8 +106,5 @@ const Search = props => {
     )
 }
 
-Search.propTypes = {
-
-}
 
 export default Search
