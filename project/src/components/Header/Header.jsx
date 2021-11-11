@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import './style.scss';
 
 const Header = props => {
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
                         Anrakutei
