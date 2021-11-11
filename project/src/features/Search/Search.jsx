@@ -14,7 +14,6 @@ const Search = () => {
         name: ''
     });
 
-    const itemsPerPage = 10;
     useEffect(() => {
         (async () => {
             try {
@@ -39,7 +38,7 @@ const Search = () => {
         setSearchResult(value.name);
     };
 
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
     // Get current posts
@@ -49,14 +48,16 @@ const Search = () => {
 
     // Change page
     const handlePageClick = e => {
-        setCurrentPage(e.selected);
+        setCurrentPage(e.selected + 1);
     };
 
     const pageNumbers = [];
 
-    for (let i = 0; i <= Math.ceil(universityList.length / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(universityList.length / postsPerPage); i++) {
         pageNumbers.push(i);
     }
+    console.log('indexOfFirstPost ', indexOfFirstPost)
+    console.log('indexOfLastPost ', indexOfLastPost)
     return (
         <>
             <section id="search" className="pt-5">
