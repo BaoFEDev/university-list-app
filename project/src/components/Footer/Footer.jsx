@@ -6,22 +6,22 @@ const Footer = props => {
         <>
 
 
-            <footer class="page-footer font-small special-color-dark pt-4">
+            <footer className="page-footer font-small special-color-dark pt-4">
 
 
-                <div class="container">
+                <div className="container">
 
 
-                    <div class="row">
+                    <div className="row">
 
 
-                        <div class="col-md-6 mb-4">
+                        <div className="col-md-6 mb-4">
 
 
-                            <form class="form-inline">
-                                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                            <form className="form-inline">
+                                <input className="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
                                     aria-label="Search" />
-                                <i class="fas fa-search" aria-hidden="true"></i>
+                                <i className="fas fa-search" aria-hidden="true"></i>
                             </form>
 
 
@@ -29,13 +29,13 @@ const Footer = props => {
 
 
 
-                        <div class="col-md-6 mb-4">
+                        <div className="col-md-6 mb-4">
 
-                            <form class="input-group">
-                                <input type="text" class="form-control form-control-sm" placeholder="Your email"
+                            <form className="input-group">
+                                <input type="text" className="form-control form-control-sm" placeholder="Your email"
                                     aria-label="Your email" aria-describedby="basic-addon2" />
-                                <div class="input-group-append">
-                                    <button class="btn btn-sm btn-outline-white my-0 btn-secondary" type="button">Sign up</button>
+                                <div className="input-group-append">
+                                    <button className="btn btn-sm btn-outline-white my-0 btn-secondary" type="button">Sign up</button>
                                 </div>
                             </form>
 
@@ -49,7 +49,7 @@ const Footer = props => {
 
 
 
-                <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <div className="footer-copyright text-center py-3">© 2020 Copyright:
                     <a href="https://mdbootstrap.com/"> Anrakutei</a>
                 </div>
 

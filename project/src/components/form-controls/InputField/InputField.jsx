@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Controller } from "react-hook-form";
 
 const InputField = (props) => {
-    const { name, disabled, form, className } = props;
+    const { name, disabled, form, className, placeholder } = props;
     const { formState: { errors }, register } = form;
     return (
         <>
@@ -14,6 +14,7 @@ const InputField = (props) => {
                         {...field}
                         type="text"
                         className={className}
+                        placeholder={placeholder}
                     />}
                 control={form.control}
                 name={name}
@@ -28,6 +29,7 @@ InputField.propTypes = {
     name: PropTypes.string.isRequired,
     className: PropTypes.string,
     disabled: PropTypes.bool,
+    placeholder: PropTypes.string
 };
 
 export default InputField;

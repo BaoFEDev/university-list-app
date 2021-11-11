@@ -20,8 +20,8 @@ const SearchForm = props => {
         <>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <div className="mb-3">
-                    <h1 className="main-title text-center mb-4">Search University</h1>
-                    <InputField name="name" className="form-control" form={form} />
+                    <h1 className="main-title text-center mb-4">Search University App</h1>
+                    <InputField name="name" className="form-control" form={form} placeholder="Enter the name of the university you are looking for..." />
                 </div>
             </form>
         </>
