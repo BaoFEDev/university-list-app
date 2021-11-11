@@ -56,11 +56,9 @@ const Search = () => {
     for (let i = 1; i <= Math.ceil(universityList.length / postsPerPage); i++) {
         pageNumbers.push(i);
     }
-    console.log('indexOfFirstPost ', indexOfFirstPost)
-    console.log('indexOfLastPost ', indexOfLastPost)
     return (
         <>
-            <section id="search" className="pt-5">
+            <section id="search" className="pt-5 pb-5">
                 <div className="container">
                     <SearchForm onSubmit={handleTodoSubmit} />
                     {
