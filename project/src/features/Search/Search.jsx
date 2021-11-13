@@ -68,6 +68,9 @@ const Search = () => {
                         {
                             loading && (<Loading />)
                         }
+                        {
+                            !currentPosts.length && (<h3 className="text-center mt-4 mb-4">{searchResult} not found</h3>)
+                        }
                         <ul className="university-list">
                             {currentPosts.map((item, idx) => (
                                 <UniversityItem
