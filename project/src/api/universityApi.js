@@ -1,9 +1,9 @@
-import axiosClient from "./axiosClient";
+import axiosClient1 from "./axiosClient1";
 
 const universityApi = {
   getAll(params) {
     const url = "/search";
-    return axiosClient.get(url, { params });
+    return axiosClient1.get(url, { params });
   },
 };
 export default universityApi;

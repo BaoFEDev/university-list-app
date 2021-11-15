@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Controller } from "react-hook-form";
-
+import './style.scss'
 const InputField = (props) => {
     const { name, disabled, form, className, placeholder } = props;
     const { formState: { errors }, register } = form;
@@ -20,6 +20,7 @@ const InputField = (props) => {
                 name={name}
                 disabled={disabled}
             />
+            <p className="error ">{errors[name]?.message}</p>
         </>
     );
 };

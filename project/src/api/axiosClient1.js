@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosClient = axios.create({
+const axiosClient1 = axios.create({
   baseURL: "http://universities.hipolabs.com/",
   headers: {
     "Content-Type": "application/json",
@@ -9,7 +9,7 @@ const axiosClient = axios.create({
 
 //Interceptor
 // Add a request interceptor
-axiosClient.interceptors.request.use(
+axiosClient1.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     return config;
@@ -21,7 +21,7 @@ axiosClient.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosClient.interceptors.response.use(
+axiosClient1.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
@@ -35,4 +35,4 @@ axiosClient.interceptors.response.use(
   }
 );
 
-export default axiosClient;
+export default axiosClient1;
