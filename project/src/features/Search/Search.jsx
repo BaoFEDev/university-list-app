@@ -4,6 +4,8 @@ import universityApi from '../../api/universityApi';
 import Loading from '../../components/Loading/Loading';
 import SearchForm from './components/SearchForm';
 import UniversityItem from './components/UniversityItem';
+import getCurrentPosts from './hooks/getCurrentPosts';
+import getPageNumbersLength from './hooks/getPageNumbersLength';
 import './Search.scss';
 const Search = () => {
     const [universityList, setUniversityList] = useState([]);
@@ -42,20 +44,15 @@ const Search = () => {
     const [postsPerPage] = useState(10);
 
     // Get current posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = (indexOfLastPost - postsPerPage) <= 0 ? 0 : (indexOfLastPost - postsPerPage);
-    const currentPosts = universityList.slice(indexOfFirstPost, indexOfLastPost);
+    let currentPosts = getCurrentPosts(currentPage, postsPerPage, universityList);
+
 
     // Change page
     const handlePageClick = e => {
         setCurrentPage(e.selected + 1);
     };
 
-    const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(universityList.length / postsPerPage); i++) {
-        pageNumbers.push(i);
-    }
     return (
         <>
             <section id="search" className="pt-5 pb-5">
@@ -69,7 +66,7 @@ const Search = () => {
                             loading && (<Loading />)
                         }
                         {
-                            !currentPosts.length && (<h3 className="text-center mt-4 mb-4">{searchResult} not found</h3>)
+                            (!currentPosts.length && filterList.name !== '') && (<h3 className="text-center mt-4 mb-4">{searchResult} not found</h3>)
                         }
                         <ul className="university-list">
                             {currentPosts.map((item, idx) => (
@@ -86,7 +83,7 @@ const Search = () => {
                         breakLabel="..."
                         nextLabel="next >"
                         breakLabel={'...'}
-                        pageCount={pageNumbers.length}
+                        pageCount={getPageNumbersLength(universityList, postsPerPage)}
                         marginPagesDisplayed={3}
                         pageRangeDisplayed={6}
                         previousLabel="< previous"
