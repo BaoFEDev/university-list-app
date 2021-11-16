@@ -1,15 +1,33 @@
 .page-footer{
-    background-color: #1e88e5 ;
-    .list-unstyled{
-        li{
+    background-color: #1e88e5;
+    .get-connected-title{
+        span{
+            color: #fff;
+        }
+    }
+    .social-media{
+        svg{
+            color: #fff;
+        }
+    }
+    .col-item{
+        p{
+            color: #fff;
             a{
-                color: #fff;
+                text-decoration: none;
+                &:hover{
+                    text-decoration: underline;
+                }
             }
         }
     }
+    .col-item-title{
+        color: #fff;
+    }
     .footer-copyright{
+        color: #fff;
         a{
-            color: #1C2331;
+            color: #fff;
         }
     }
 }
