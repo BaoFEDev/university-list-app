@@ -72,6 +72,7 @@ const Search = () => {
                             {currentPosts.map((item, idx) => (
                                 <UniversityItem
                                     key={idx}
+                                    idx={idx}
                                     name={item.name}
                                     country={item.country}
                                     web_pages={item.web_pages}
