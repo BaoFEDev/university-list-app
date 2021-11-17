@@ -1,4 +1,4 @@
-#Description
+# Description
 This is a web application showing a list of universities from all over the world.We can search for it by its name.
 
 Beside that.The user can log in to add university to favorite.
